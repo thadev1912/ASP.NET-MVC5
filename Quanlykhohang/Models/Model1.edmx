@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="quanlykhoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="chitiet_nhapkho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_phieu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ma_vattu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="sl_vattu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ghichu" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="donvitinh">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_dvt" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="po_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_kho" Type="nvarchar" MaxLength="50" />
+          <Property Name="ten_kho" Type="nvarchar" MaxLength="200" />
+          <Property Name="loai_kho" Type="nvarchar" MaxLength="200" />
+          <Property Name="ghi_chu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="khoa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_khoa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ten_khoa" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lophop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_lop" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ten_lop" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="hoten_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="gioitinh_nv" Type="bit" Nullable="false" />
+          <Property Name="std_nv" Type="int" Nullable="false" />
+          <Property Name="diachi_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nhapkho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_phieu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ngay_nhap" Type="date" Nullable="false" />
+          <Property Name="ma_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ma_kho" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="lydo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sinhvien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_sv" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ten_sv" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="diachi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ma_lop" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ma_kh" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vattu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ten_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="dvt_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="soluong_vt" Type="int" Nullable="false" />
+          <Property Name="loai_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="quanlykhoModelStoreContainer">
+          <EntitySet Name="chitiet_nhapkho" EntityType="Self.chitiet_nhapkho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="donvitinh" EntityType="Self.donvitinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kho" EntityType="Self.kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khoa" EntityType="Self.khoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lophop" EntityType="Self.lophop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhapkho" EntityType="Self.nhapkho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sinhvien" EntityType="Self.sinhvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vattu" EntityType="Self.vattu" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="quanlykhoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_kho" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ten_kho" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="loai_kho" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ghi_chu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="quanlykhoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="khoes" EntityType="Self.kho" />
+          <EntitySet Name="nhanviens" EntityType="quanlykhoModel.nhanvien" />
+          <EntitySet Name="vattus" EntityType="quanlykhoModel.vattu" />
+          <EntitySet Name="nhapkhoes" EntityType="quanlykhoModel.nhapkho" />
+          <EntitySet Name="donvitinhs" EntityType="quanlykhoModel.donvitinh" />
+          <EntitySet Name="invoices" EntityType="quanlykhoModel.invoice" />
+          <EntitySet Name="chitiet_nhapkho" EntityType="quanlykhoModel.chitiet_nhapkho" />
+          <EntitySet Name="lophops" EntityType="quanlykhoModel.lophop" />
+          <EntitySet Name="sinhviens" EntityType="quanlykhoModel.sinhvien" />
+          <EntitySet Name="khoas" EntityType="quanlykhoModel.khoa" />
+        </EntityContainer>
+        <EntityType Name="nhanvien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_nv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="hoten_nv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gioitinh_nv" Type="Boolean" Nullable="false" />
+          <Property Name="std_nv" Type="Int32" Nullable="false" />
+          <Property Name="diachi_nv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vattu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_vt" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ten_vt" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="dvt_vt" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="soluong_vt" Type="Int32" Nullable="false" />
+          <Property Name="loai_vt" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="nhapkho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_phieu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_nhap" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ma_nv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ma_kho" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="lydo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="donvitinh">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_dvt" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="po_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="chitiet_nhapkho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_phieu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ma_vattu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sl_vattu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ghichu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="lophop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_lop" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ten_lop" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sinhvien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_sv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ten_sv" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="diachi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ma_lop" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ma_kh" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="khoa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_khoa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ten_khoa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="quanlykhoModelStoreContainer" CdmEntityContainer="quanlykhoEntities">
+          <EntitySetMapping Name="khoes">
+            <EntityTypeMapping TypeName="quanlykhoModel.kho">
+              <MappingFragment StoreEntitySet="kho">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ma_kho" ColumnName="ma_kho" />
+                <ScalarProperty Name="ten_kho" ColumnName="ten_kho" />
+                <ScalarProperty Name="loai_kho" ColumnName="loai_kho" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhanviens">
+            <EntityTypeMapping TypeName="quanlykhoModel.nhanvien">
+              <MappingFragment StoreEntitySet="nhanvien">
+                <ScalarProperty Name="diachi_nv" ColumnName="diachi_nv" />
+                <ScalarProperty Name="std_nv" ColumnName="std_nv" />
+                <ScalarProperty Name="gioitinh_nv" ColumnName="gioitinh_nv" />
+                <ScalarProperty Name="hoten_nv" ColumnName="hoten_nv" />
+                <ScalarProperty Name="ma_nv" ColumnName="ma_nv" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vattus">
+            <EntityTypeMapping TypeName="quanlykhoModel.vattu">
+              <MappingFragment StoreEntitySet="vattu">
+                <ScalarProperty Name="loai_vt" ColumnName="loai_vt" />
+                <ScalarProperty Name="soluong_vt" ColumnName="soluong_vt" />
+                <ScalarProperty Name="dvt_vt" ColumnName="dvt_vt" />
+                <ScalarProperty Name="ten_vt" ColumnName="ten_vt" />
+                <ScalarProperty Name="ma_vt" ColumnName="ma_vt" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhapkhoes">
+            <EntityTypeMapping TypeName="quanlykhoModel.nhapkho">
+              <MappingFragment StoreEntitySet="nhapkho">
+                <ScalarProperty Name="lydo" ColumnName="lydo" />
+                <ScalarProperty Name="ma_kho" ColumnName="ma_kho" />
+                <ScalarProperty Name="ma_nv" ColumnName="ma_nv" />
+                <ScalarProperty Name="ngay_nhap" ColumnName="ngay_nhap" />
+                <ScalarProperty Name="ma_phieu" ColumnName="ma_phieu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donvitinhs">
+            <EntityTypeMapping TypeName="quanlykhoModel.donvitinh">
+              <MappingFragment StoreEntitySet="donvitinh">
+                <ScalarProperty Name="ten_dvt" ColumnName="ten_dvt" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoices">
+            <EntityTypeMapping TypeName="quanlykhoModel.invoice">
+              <MappingFragment StoreEntitySet="invoice">
+                <ScalarProperty Name="po_number" ColumnName="po_number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chitiet_nhapkho">
+            <EntityTypeMapping TypeName="quanlykhoModel.chitiet_nhapkho">
+              <MappingFragment StoreEntitySet="chitiet_nhapkho">
+                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+                <ScalarProperty Name="sl_vattu" ColumnName="sl_vattu" />
+                <ScalarProperty Name="ma_vattu" ColumnName="ma_vattu" />
+                <ScalarProperty Name="ma_phieu" ColumnName="ma_phieu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lophops">
+            <EntityTypeMapping TypeName="quanlykhoModel.lophop">
+              <MappingFragment StoreEntitySet="lophop">
+                <ScalarProperty Name="ten_lop" ColumnName="ten_lop" />
+                <ScalarProperty Name="ma_lop" ColumnName="ma_lop" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sinhviens">
+            <EntityTypeMapping TypeName="quanlykhoModel.sinhvien">
+              <MappingFragment StoreEntitySet="sinhvien">
+                <ScalarProperty Name="ma_kh" ColumnName="ma_kh" />
+                <ScalarProperty Name="ma_lop" ColumnName="ma_lop" />
+                <ScalarProperty Name="diachi" ColumnName="diachi" />
+                <ScalarProperty Name="ten_sv" ColumnName="ten_sv" />
+                <ScalarProperty Name="ma_sv" ColumnName="ma_sv" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khoas">
+            <EntityTypeMapping TypeName="quanlykhoModel.khoa">
+              <MappingFragment StoreEntitySet="khoa">
+                <ScalarProperty Name="ten_khoa" ColumnName="ten_khoa" />
+                <ScalarProperty Name="ma_khoa" ColumnName="ma_khoa" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

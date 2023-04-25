@@ -1,0 +1,80 @@
+﻿@model Quanlykhohang.Models.nhapkho
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card mt-5">
+    <div class="card-header bg-danger text-white">
+        <h3 class="font-weight-bold text-center">PHIẾU NHẬP KHO</h3>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("capnhat_phieunhap", "Phieunhapkho", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1 text-danger"> Mã số phiếu nhập kho:</label>
+                        @Html.EditorFor(model => model.ma_phieu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ma_phieu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="exampleFormControlSelect1 text-danger">Ngày nhập kho:</label>
+                    @Html.EditorFor(model => model.ngay_nhap, new { htmlAttributes = new { @class = "form-control", @Value = Model.ngay_nhap.Date.ToString("dd-MM-yyyy") } })
+                    @Html.ValidationMessageFor(model => model.ngay_nhap, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1 text-danger">Tên nhân viên nhập:</label>
+                        @Html.DropDownListFor(model => model.ma_nv, (IEnumerable<SelectListItem>)ViewBag.ds_nhanvien, new { @class = "form-select form-select-lg mt-3" })
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="exampleFormControlSelect1 text-danger">Loại Kho</label>
+                    @Html.DropDownListFor(model => model.ma_kho, (IEnumerable<SelectListItem>)ViewBag.ds_kho, new { @class = "form-select form-select-lg mt-3" })
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+
+                </div>
+
+                <div class="col-6">
+                    <input type="submit" value="Lưu Thông Tin" class="btn bg-danger text-white" />
+                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn bg-warning text-white text-right" })
+                </div>
+            </div>
+
+
+
+
+        </div>
+        }
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

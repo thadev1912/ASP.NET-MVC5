@@ -1,0 +1,338 @@
+﻿@model Quanlykhohang.Models.nhapkho
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cotainer">
+    <div class="card mt-5">
+        <div class="card-header bg-danger text-white">
+            <h3 class="font-weight-bold text-center">PHIẾU NHẬP KHO</h3>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("luu_phieunhap", "Phieunhapkho", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row mt-5">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1 text-danger"> Mã số phiếu nhập kho:</label>
+                                <input type="text" class="form-control" id="email" placeholder="" name="txt_ma_phieu" value="@ViewBag.ma_phieu">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleFormControlSelect1 text-danger">Ngày nhập kho:</label>
+                            @Html.EditorFor(model => model.ngay_nhap, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                            @Html.ValidationMessageFor(model => model.ngay_nhap, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1 text-danger">Vui lòng chọn Tên Nhân Viên Nhập Kho:</label>
+                                @Html.DropDownList("get_nhanvien", (IEnumerable<SelectListItem>)ViewBag.ds_nhanvien, new { @class = "form-select form-select-lg mt-3" })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleFormControlSelect1 text-danger">Vui lòng chọn tên Kho cần nhập:</label>
+                            @Html.DropDownList("get_kho", (IEnumerable<SelectListItem>)ViewBag.ds_kho, new { @class = "form-select form-select-lg mt-3" })
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+
+                        </div>
+
+                        <div class="col-6">
+                            <input type="submit" value="Lưu Thông Tin" class="btn bg-danger text-white" />
+                            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn bg-warning text-white text-right" })
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            }
+
+
+            <!--danh sach vat tu-->
+
+            <p class="text-danger">Danh Sách Vật Tư</p>
+            <form action="" method="get" id="them_vattu">
+
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            @Html.DropDownList("get_vattu", (IEnumerable<SelectListItem>)ViewBag.ds_vattu, new { @class = "form-select-lg form-control" })
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            @Html.DropDownList("get_dvt", (IEnumerable<SelectListItem>)ViewBag.ds_dvt, new { @class = "form-select-lg form-control" })
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" class="form-control" id="soluong" name="txt_soluong" placeholder="Nhập số lượng">
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-warning" id="submit" name="submit" value="">Thêm Vật Tư</button>
+                    </div>
+                </div>
+            </form>
+
+            <!--Edit post Area -->
+
+            <div class="modal fade" id="update_vattu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="update_vattu">Chỉnh Sửa</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="" method="post" id="cappnhat_vattu">
+
+                            <div class="modal-body">
+                                <input type="hidden" id="demo0">
+                                <label>Mã Vật Tư</label>
+                                <input type="text" id="demo1" name="phieu" class="form-control">
+                                <label>Số lượng</label>
+                                <input type="text" id="demo2" name="vattu" class="form-control">
+                                <label>Ghi chú</label>
+                                <input type="text" id="demo4" name="soluong" class="form-control">
+                            </div>
+
+                            <div class="modal-footer">
+                                <!-- <input type="submit" class="btn btn-danger" id="myModal" value="Cập Nhật"> -->
+                                <!-- <button type="submit" class="btn btn-success" ><i class="glyphicon glyphicon-ok"></i> Save</button> -->
+                                <button class="btn btn-danger" id="capnhat_vattu" type="submit" name="submit" value="">Cập Nhật</button>
+                                <button type="button" class=" btn btn-info" data-dismiss="modal" aria-label="Close">Đóng</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--End Edit post Area -->
+        </div>
+    </div>
+</div>
+    <br />
+    <table id="table" class="table table-bordered">
+        <thread>
+            <th>Mã Vật Tư</th>
+            <th>Tên Vật Tư</th>
+            <th>Số Lượng </th>
+            <th>Tùy Chỉnh </th>
+
+        </thread>
+
+        <tbody id="load"></tbody>
+    </table>
+    <!--End Edit post Area -->
+    <script type="text/javascript">
+
+        // load du lieu vao form
+        load();
+        function load() {
+            $('#load').html('');
+            // var ma_phieu = $("input[name='txt_maphieu']").val();
+            var ma_phieu = "PNK0001";
+            //alert('load được rồi');
+            $.ajax({
+
+                url: 'https://localhost:44390/Chitietphieunhap/ds_vattunhap',
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    "Content-Type": "application/x-www-form-urlencoded",
+
+                },
+                success: function (res) {
+                    console.log(res);
+                    if (res.status == 200) {
+
+                        // alert("được rồi đó bạn");
+                        let posts = res.data;
+                        // $('#status_token').html('');
+                        // $('#logout_token').addClass('alert alert-danger');
+                        $.each(posts, function (i, item) {
+
+                            $('#load').append(
+                                '<tr>\
+                                             <td class="id" style="display:none">'+ item.id + '</td>\
+                                             <td>'+ item.ma_phieu + '</td>\
+                                             <td>'+ item.ma_vattu + '</td>\
+                                             <td>'+ item.sl_vattu + '</td>\
+                                             <td>\
+                                             <button value="'+ item.id + '" class="btn btn-xs btn-info edit_btn "data-toggle="modal" data-target="update_vattu">Sửa</button>\
+                                             <button value="'+ item.id + '" class="btn btn-xs btn-info delete_btn "data-toggle="modal" >Xóa</button></td>\                                        </tr>');
+
+                        });
+                    }
+                    //  else
+                    //  {
+                    //         alert("vui lòng kiểm tra lại kết nối");
+                    //  }
+                }
+            });
+        };
+        //them vật tư
+        $('#them_vattu').submit(function (e) {
+            e.preventDefault();
+            var ma_phieu = $("input[name='txt_ma_phieu']").val();
+            var get_vattu = $("#get_vattu :selected").val();
+            //  var ma_vattu= $("#ma_vattu :selected").text(); nếu muốn lên tên hiện thị
+            var soluong = $("input[name='txt_soluong']").val();
+            var _token = $("input[name='_token']").val();
+            // console.log(soluong);
+            // console.log(ma_vattu);
+            $.ajax({
+                url: 'https://localhost:44390/Chitietphieunhap/luu_vattunhap',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    "Content-Type": "application/x-www-form-urlencoded",
+
+                },
+                data: { _token: _token, ma_phieu: ma_phieu, get_vattu: get_vattu, soluong: soluong, },
+                success: function (res) {
+                    if (res.status == 200) {
+                        $('selected').val('');
+                        $("input[name='soluong']").val('');
+                        // $('#load').html('');
+                        load();
+                    }
+                    else {
+                        alert('Kết nối lỗi!!!');
+                    }
+
+                }
+            });
+        });
+        // sua vat tu
+        $(document).ready(function () {
+            $(document).on('click', '.edit_btn', function () {
+
+                let id = $(this).val();
+                console.log(id);
+                $.ajax({
+                    url: 'https://localhost:44390/Chitietphieunhap/sua_vattunhap/' + id + '',
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        "Content-Type": "application/x-www-form-urlencoded",
+
+                    },
+
+                    success: function (res) {
+                        if (res.status == 200) {
+                            console.table(res.data);
+                            console.table(res.data);
+                            $('#demo0').val(res.data.id);
+                            $('#demo1').val(res.data.ma_vattu);
+                            $('#demo2').val(res.data.sl_vattu);
+                            //$('#demo3').val(res.data.sl_vattu);
+                            $('#demo4').val(res.data.ghichu);
+                            jQuery.noConflict();
+                            $('#update_vattu').modal('show');
+
+                            //load();
+                        }
+                        else {
+                            alert('Kết nối lỗi!!!');
+                        }
+
+                    }
+                });
+            });
+        });
+        //capnhat_vattu
+        $('#cappnhat_vattu').submit(function (e) {
+            e.preventDefault();
+            var ma_phieu = $("input[name='txt_ma_phieu']").val();
+            let id = $('#demo0').val();
+          
+            $.ajax({
+                url: 'https://localhost:44390/Chitietphieunhap/capnhat_vattunhap/' + id + '',
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    "Content-Type": "application/x-www-form-urlencoded",
+
+                },
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    ma_phieu: ma_phieu,
+                    get_vattu: $('#demo1').val(),
+                    //dvt: $('#demo3').val(),
+                    soluong: $('#demo2').val(),
+
+                },
+                success: function (res) {
+                    if (res.status == 200) {
+                        // $('input[type="text"],textarea').val('');  
+                        $('#update_vattu').modal('hide');
+                        $('#load').html('');
+                        load();
+                    }
+                    else {
+                        alert('Kết nối lỗi!!!');
+                    }
+
+                }
+            });
+        });
+        $(document).on('click', '.delete_btn', function () {
+
+            let id = $(this).val();
+            console.log(id);
+            $.ajax({
+                url: 'https://localhost:44390/Chitietphieunhap/xoa_vattunhap/' + id + '',
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    "Content-Type": "application/x-www-form-urlencoded",
+
+                },
+
+                success: function (res) {
+                    if (res.status == 200) {
+                        // $('input[type="text"],textarea').val('');  
+                        $('#load').html('');
+                        load();
+                    }
+                    else {
+                        alert('Kết nối lỗi!!!');
+                    }
+
+                }
+            });
+        });
+    </script>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+

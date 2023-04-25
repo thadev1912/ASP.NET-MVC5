@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="quanlykhoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="chitiet_nhapkho">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_phieu" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ma_vattu" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="sl_vattu" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ghichu" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="donvitinh">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ten_dvt" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="invoice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="po_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kho">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_kho" Type="nvarchar" MaxLength="50" />
+    <Property Name="ten_kho" Type="nvarchar" MaxLength="200" />
+    <Property Name="loai_kho" Type="nvarchar" MaxLength="200" />
+    <Property Name="ghi_chu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="khoa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_khoa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ten_khoa" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lophop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_lop" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ten_lop" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="hoten_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="gioitinh_nv" Type="bit" Nullable="false" />
+    <Property Name="std_nv" Type="int" Nullable="false" />
+    <Property Name="diachi_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="nhapkho">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_phieu" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ngay_nhap" Type="date" Nullable="false" />
+    <Property Name="ma_nv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ma_kho" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="lydo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sinhvien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_sv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ten_sv" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ma_lop" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ma_kh" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vattu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ten_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="dvt_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="soluong_vt" Type="int" Nullable="false" />
+    <Property Name="loai_vt" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="quanlykhoModelStoreContainer">
+    <EntitySet Name="chitiet_nhapkho" EntityType="Self.chitiet_nhapkho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="donvitinh" EntityType="Self.donvitinh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kho" EntityType="Self.kho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="khoa" EntityType="Self.khoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lophop" EntityType="Self.lophop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhapkho" EntityType="Self.nhapkho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sinhvien" EntityType="Self.sinhvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vattu" EntityType="Self.vattu" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

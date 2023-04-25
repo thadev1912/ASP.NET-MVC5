@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="quanlykhoModelStoreContainer" CdmEntityContainer="quanlykhoEntities">
+    <EntitySetMapping Name="khoes">
+      <EntityTypeMapping TypeName="quanlykhoModel.kho">
+        <MappingFragment StoreEntitySet="kho">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ma_kho" ColumnName="ma_kho" />
+          <ScalarProperty Name="ten_kho" ColumnName="ten_kho" />
+          <ScalarProperty Name="loai_kho" ColumnName="loai_kho" />
+          <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nhanviens">
+      <EntityTypeMapping TypeName="quanlykhoModel.nhanvien">
+        <MappingFragment StoreEntitySet="nhanvien">
+          <ScalarProperty Name="diachi_nv" ColumnName="diachi_nv" />
+          <ScalarProperty Name="std_nv" ColumnName="std_nv" />
+          <ScalarProperty Name="gioitinh_nv" ColumnName="gioitinh_nv" />
+          <ScalarProperty Name="hoten_nv" ColumnName="hoten_nv" />
+          <ScalarProperty Name="ma_nv" ColumnName="ma_nv" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vattus">
+      <EntityTypeMapping TypeName="quanlykhoModel.vattu">
+        <MappingFragment StoreEntitySet="vattu">
+          <ScalarProperty Name="loai_vt" ColumnName="loai_vt" />
+          <ScalarProperty Name="soluong_vt" ColumnName="soluong_vt" />
+          <ScalarProperty Name="dvt_vt" ColumnName="dvt_vt" />
+          <ScalarProperty Name="ten_vt" ColumnName="ten_vt" />
+          <ScalarProperty Name="ma_vt" ColumnName="ma_vt" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nhapkhoes">
+      <EntityTypeMapping TypeName="quanlykhoModel.nhapkho">
+        <MappingFragment StoreEntitySet="nhapkho">
+          <ScalarProperty Name="lydo" ColumnName="lydo" />
+          <ScalarProperty Name="ma_kho" ColumnName="ma_kho" />
+          <ScalarProperty Name="ma_nv" ColumnName="ma_nv" />
+          <ScalarProperty Name="ngay_nhap" ColumnName="ngay_nhap" />
+          <ScalarProperty Name="ma_phieu" ColumnName="ma_phieu" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donvitinhs">
+      <EntityTypeMapping TypeName="quanlykhoModel.donvitinh">
+        <MappingFragment StoreEntitySet="donvitinh">
+          <ScalarProperty Name="ten_dvt" ColumnName="ten_dvt" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="invoices">
+      <EntityTypeMapping TypeName="quanlykhoModel.invoice">
+        <MappingFragment StoreEntitySet="invoice">
+          <ScalarProperty Name="po_number" ColumnName="po_number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chitiet_nhapkho">
+      <EntityTypeMapping TypeName="quanlykhoModel.chitiet_nhapkho">
+        <MappingFragment StoreEntitySet="chitiet_nhapkho">
+          <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+          <ScalarProperty Name="sl_vattu" ColumnName="sl_vattu" />
+          <ScalarProperty Name="ma_vattu" ColumnName="ma_vattu" />
+          <ScalarProperty Name="ma_phieu" ColumnName="ma_phieu" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lophops">
+      <EntityTypeMapping TypeName="quanlykhoModel.lophop">
+        <MappingFragment StoreEntitySet="lophop">
+          <ScalarProperty Name="ten_lop" ColumnName="ten_lop" />
+          <ScalarProperty Name="ma_lop" ColumnName="ma_lop" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sinhviens">
+      <EntityTypeMapping TypeName="quanlykhoModel.sinhvien">
+        <MappingFragment StoreEntitySet="sinhvien">
+          <ScalarProperty Name="ma_kh" ColumnName="ma_kh" />
+          <ScalarProperty Name="ma_lop" ColumnName="ma_lop" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+          <ScalarProperty Name="ten_sv" ColumnName="ten_sv" />
+          <ScalarProperty Name="ma_sv" ColumnName="ma_sv" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khoas">
+      <EntityTypeMapping TypeName="quanlykhoModel.khoa">
+        <MappingFragment StoreEntitySet="khoa">
+          <ScalarProperty Name="ten_khoa" ColumnName="ten_khoa" />
+          <ScalarProperty Name="ma_khoa" ColumnName="ma_khoa" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

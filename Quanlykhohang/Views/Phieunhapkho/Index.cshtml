@@ -1,0 +1,68 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Quanlykhohang.Models.nhapkho>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card mt-5">
+    <div class="card-header bg-danger text-white">
+        <h3 class="font-weight-bold text-center">DANH SÁCH PHIẾU NHẬP</h3>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <!--thuộc tính form-row nó giúp chia 2 cột trên 1 row của nó-->
+            <div class="col-3 ">
+                @Html.ActionLink("Thêm Phiếu Nhập Kho", "phieunhapkho", null, new { @class = " btn btn-primary mt-3" })
+            </div>
+
+        </div>
+        <br />
+        <table class="table table-bordered">
+
+            <tr>
+                <th style="text-align:center">Mã Phiếu</th>
+                <th style="text-align:center">Ngày nhập</th>
+                <th style="text-align:center">Mã Nhân Viên</th>
+                <th style="text-align:center">Mã Kho</th>
+                <th style="text-align:center">Lý do</th>
+                <th style="text-align:center">Tuỳ Chỉnh</th>
+
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.ma_phieu
+                    </td>
+                    <td>
+                        @item.ngay_nhap.ToString("dd-MM-yyyy")
+                    </td>
+                    <td>
+                        @item.ma_nv
+                    </td>
+                    <td>
+                        @item.ma_kho
+                    </td>
+                    <td>
+                        @item.lydo
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "sua_phieunhap", new { id = item.id }, new { @class = "btn bg-warning" }) |
+                        @Html.ActionLink("Chi Tiết", "Details", new { id = item.id }, new { @class = "btn bg-danger" }) |
+                        @Html.ActionLink("Xóa", "xoa_phieunhap", new { id = item.id }, new { @class = "btn bg-info" })
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page = page, @pageSize = ViewBag.pageSize }))
+        </div>
+    </div>
+</div>
+
+

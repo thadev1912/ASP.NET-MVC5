@@ -1,0 +1,99 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Quanlykhohang.Models.getlopViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card mt-5">
+    <div class="card-header bg-danger text-white">
+        <h3 class="font-weight-bold text-center">DANH SÁCH SINH VIÊN</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!--thuộc tính form-row nó giúp chia 2 cột trên 1 row của nó-->
+            <div class="col-3 ">
+                @Html.ActionLink("Thêm mới", "Create", null, new { @class = " btn btn-primary mt-3" })
+            </div>
+            <div class="col-9 ">
+                @using (Html.BeginForm("Index", "Kho", FormMethod.Post, new { @class = "navbar-form navbar-right mt-3" }))
+                {
+                    <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
+                    <div class="form-group"><input type="text" id="txt_search" name="txt_search" placeholder="Nhập thông tin tìm kiếm" class="form-control" /></div>
+                    <button type="submit" id="press_search" class="btn btn-danger mt-3">Tìm kiếm</button>
+
+                }
+            </div>
+        </div>
+        <br />
+        <table class="table table-bordered">
+
+            <tr>
+                <th style="text-align:center">Mã Sinh Viên</th>
+                <th style="text-align:center">Tên Sinh viên</th>
+                <th style="text-align:center">Lớp</th>
+                <th style="text-align:center">Địa Chỉ</th>
+                <th style="text-align:center">Tên Khoa</th>
+                <th style="text-align:center">Tuỳ Chỉnh</th>
+
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.masv
+                    </td>
+                    <td>
+                        @item.tensv
+                    </td>
+                    <td>
+                        @item.tenlop
+                    </td>
+                    <td>
+                        @item.dia_chi
+                    </td>
+                    <td>
+                        @item.tenkhoa
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn bg-warning" }) |
+                        @Html.ActionLink("Chi Tiết", "Details", new { id = item.Id }, new { @class = "btn bg-danger" }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn bg-info" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page = page, pageSize = ViewBag.pageSize }))
+        </div>
+        <script type="text/javascript">
+                   $(document).ready(function () {
+                       $('#press_search').off('click').on('click',function (e) {
+                           e.preventDefault();
+                           var get_data = $("input[name='txt_search']").val();//lấy gía trị ng dùng gõ
+                           //var get_data = $(this).val();
+                           //console.log(get_data);
+                           $.ajax({
+                               headers: { 'X-CSRF-TOKEN': "{{ csrf_token() }}" },
+                               url: `https://localhost:44390/Kho/ajax`,
+                               type: 'GET',
+                               data: { get_data: get_data },
+                               success: function (res) {
+                                   console.log(res.data);
+                               }
+
+                           });
+                       });
+                   });
+        </script>
+
+    </div>
+</div>
+
+

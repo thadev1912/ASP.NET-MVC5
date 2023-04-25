@@ -1,0 +1,85 @@
+﻿@model Quanlykhohang.Models.nhanvien
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card mt-5">
+    <div class="card-header bg-danger text-white">
+        <h3 class="font-weight-bold text-center">DANH SÁCH NHÂN VIÊN</h3>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label>MÃ NHÂN VIÊN</label>
+                </div>
+                <div class="col-md-9">
+
+                    @Html.EditorFor(model => model.ma_nv, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ma_nv, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label>TÊN NHÂN VIÊN</label>
+                </div>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.hoten_nv, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.hoten_nv, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label>GIỚI TÍNH</label>
+                </div>
+                <div class="col-md-9">
+                    @Html.RadioButtonFor(model => model.gioitinh_nv,true) Male
+                    @Html.RadioButtonFor(model => model.gioitinh_nv,false) Female
+                    @Html.ValidationMessageFor(model => model.gioitinh_nv, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label>SỐ ĐIỆN THOẠI</label>
+                </div>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.std_nv, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.std_nv,"", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label>ĐỊA CHỈ</label>
+                </div>
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.diachi_nv, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.diachi_nv, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 mt-3">
+                    <input type="submit" value="Lưu Thông Tin" class="btn bg-danger text-white" />
+                    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn bg-warning text-white text-right" })
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
+
+
+
