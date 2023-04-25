@@ -1,0 +1,12 @@
+        CÁCH EXPORT-IMPORT FILE DB SQL_SERVER 
+
+****************Cách export ra file bacpac**********************
+Chọn DB cần xuất/Tasks/Export Data_tier Application
+
+	****************Cách import**************************
+Chọn floder Database\Import Data-tier Aplication\Next...Đặt tên thư mục DB mới rồi Next
+
+Tài liệu tham khảo:https://www.youtube.com/watch?v=34DQIR577m4
+
+
+//ngoài ra còn file script thì từ từ nghiên cứu sau nhé!!!
