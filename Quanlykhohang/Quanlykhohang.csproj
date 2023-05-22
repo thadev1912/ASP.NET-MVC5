@@ -309,6 +309,8 @@
     <Content Include="Views\SinhABC\Index.cshtml" />
     <Content Include="Views\Sinhvien123\Create.cshtml" />
     <Content Include="Views\Sinhvien123\Index.cshtml" />
+    <Content Include="Views\Sinhvienthadev\Create.cshtml" />
+    <Content Include="Views\Sinhvienthadev\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
