@@ -138,7 +138,6 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChitietphieunhapController.cs" />
-    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoController.cs" />
     <Compile Include="Controllers\NhanvienController.cs" />
@@ -306,6 +305,8 @@
     <Content Include="Views\Phieunhapkho\invoice.cshtml" />
     <Content Include="Views\SinhVien\Index.cshtml" />
     <Content Include="Views\SinhVien\Create.cshtml" />
+    <Content Include="Views\SinhABC\Create.cshtml" />
+    <Content Include="Views\SinhABC\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
